@@ -11,7 +11,7 @@ const ibmPlexSerif = IBM_Plex_Serif({
 export const metadata: Metadata = {
     title: "Horizon",
     description:
-        "Horizon is a personal finance app that helps you track your spending and save money. It's easy to use and free to download. Get started today!",
+        "Horizon is a banking platform that helps you manage your finances, save money, and invest in your future.",
 
     icons: {
         icon: "/icons/icon.svg",
