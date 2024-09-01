@@ -1,5 +1,5 @@
 'use client'
-import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.action'
+import { signIn, signUp } from '@/lib/actions/user.action'
 import { authFormSchema } from '@/lib/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2 } from 'lucide-react'
@@ -10,7 +10,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import CustomInput from './CustomInput'
-import PladLink from './PladLink'
+import PlaidLink from './PlaidLink'
 import { Button } from './ui/button'
 import { Form } from './ui/form'
 
@@ -43,7 +43,19 @@ const AuthForm = ({ type }: AuthFormProps) => {
         setIsLoading(true)
         try {
             if (type === 'sign-up') {
-                const newUser = await signUp(data)
+                const userData = {
+                    email: data.email,
+                    password: data.password,
+                    firstName: data.firstName ?? '',
+                    lastName: data.lastName ?? '',
+                    address1: data.address1 ?? '',
+                    city: data.city ?? '',
+                    state: data.state ?? '',
+                    postalCode: data.postalCode ?? '',
+                    dateOfBirth: data.dateOfBirth ?? '',
+                    ssn: data.ssn ?? '',
+                }
+                const newUser = await signUp(userData)
                 setUser(newUser)
             }
             if (type === 'sign-in') {
@@ -51,6 +63,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
                 if (response) router.push('/')
             }
         } catch (error) {
+            console.log(error)
         } finally {
             setIsLoading(false)
         }
@@ -90,7 +103,11 @@ const AuthForm = ({ type }: AuthFormProps) => {
             </header>
             {user ? (
                 <div className="flex flex-col gap-4">
-                    <PladLink user={user} variant="primary" />
+                    <PlaidLink
+                        user={user ?? ({} as User)}
+                        variant="primary"
+                        dwollaCustomerId=""
+                    />
                 </div>
             ) : (
                 <>
@@ -147,7 +164,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
                                             control={form.control}
                                             name="dateOfBirth"
                                             label="Date of Birth"
-                                            placeholder="DD/MM/YYYY"
+                                            placeholder="YYYY-MM-DD"
                                         />
                                         <CustomInput
                                             control={form.control}

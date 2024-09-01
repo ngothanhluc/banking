@@ -8,10 +8,11 @@ import Footer from './Footer'
 
 const Sidebar = ({ user }: SidebarProps) => {
     const pathName = usePathname()
+
     return (
         <section className="sidebar">
             <nav className="flex flex-col gap-4">
-                <Link className="flex items-center" href="/">
+                <Link className="flex items-center justify-center" href="/">
                     <Image
                         src={'/icons/logo.svg'}
                         width={34}

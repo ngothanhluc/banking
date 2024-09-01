@@ -14,7 +14,7 @@ export const metadata: Metadata = {
         "Horizon is a banking platform that helps you manage your finances, save money, and invest in your future.",
 
     icons: {
-        icon: "/icons/icon.svg",
+        icon: "/icons/logo.svg",
     },
 };
 
