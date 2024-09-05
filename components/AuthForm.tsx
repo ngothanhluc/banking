@@ -104,7 +104,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
             {user ? (
                 <div className="flex flex-col gap-4">
                     <PlaidLink
-                        user={user ?? ({} as User)}
+                        user={user}
                         variant="primary"
                         dwollaCustomerId=""
                     />
